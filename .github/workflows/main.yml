@@ -1,5 +1,8 @@
 
-name: Build Android APK
+- name: Configure Android SDK
+  run: |
+    echo "sdk.dir=$ANDROID_HOME" > local.properties
+    "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
 on:
   workflow_dispatch:
