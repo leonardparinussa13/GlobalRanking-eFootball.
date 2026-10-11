@@ -22,15 +22,20 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
-
-      - name: Extract project ZIP
-        run: |
-          unzip -o GlobalRankingAndroid-Project.zip -d android-project
+        with:
+          packages: |
+            platform-tools
+            platforms;android-35
+            build-tools;35.0.0
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
+
+      - name: Extract project ZIP
+        run: |
+          unzip -o GlobalRankingAndroid-Project.zip -d android-project
 
       - name: Build APK
         run: |
@@ -42,4 +47,3 @@ jobs:
         with:
           name: GlobalRanking-eFootball-APK
           path: android-project/app/build/outputs/apk/debug/app-debug.apk
-
